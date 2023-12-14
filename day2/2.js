@@ -22,8 +22,12 @@ async function findGames() {
                 green: 1,
             };
 
-            const data = line.split(/[;,]/).slice(1); // remove game id and ; and , from each line
-
+            const colonSplit = line.split(":");
+            let data = "";
+            if (colonSplit.length > 1) {
+                data = colonSplit[1].split(/[;,]/);
+            }
+            console.log(data);
             for (let i = 0; i < data.length; i++) {
                 const [countStr, color] = data[i].trim().split(/\s+/); // split count and color based on spaces
                 const count = parseInt(countStr, 10);
